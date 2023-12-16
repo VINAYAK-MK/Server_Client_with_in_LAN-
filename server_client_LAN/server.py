@@ -1,6 +1,10 @@
+
 import socket 
 import threading
 from time import sleep
+
+IP_adress="IP adress of device on which this code is running and type should be string"
+port="any port number and type should be integer"
 
 members_lock = threading.Lock()
 def add_member(member,add):
@@ -24,6 +28,5 @@ members=[]
 while True:
 	member, addr = server.accept()
 	members.append(member)
-	t=threading.Thread(target=add_member,args=(member,addr))
-	t.start()
-
+	thread=threading.Thread(target=add_member,args=(member,addr))
+	thread.start()
